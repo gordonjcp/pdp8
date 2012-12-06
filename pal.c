@@ -51,6 +51,7 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #define isend(c) ((c=='\0')||(c=='\n'))
 #define isdone(c) ( (c == '/') || (isend(c)) || (c == ';') )
@@ -436,6 +437,7 @@ short int val;
 char lexstart; /* index of start of the current lexeme on line */
 char lexterm;  /* index of character after the current lexeme on line */
 
+#undef isblank
 #define isblank(c) ((c==' ')||(c=='\t')||(c=='\f')||(c=='>'))
 
 nextlex()
