@@ -1,0 +1,139 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.2	//
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -c -g -Wall$/;"	m
+CORESIZE	pdp8.h	1;"	d
+DEPAL_OBJS	Makefile	/^DEPAL_OBJS = depal.o$/;"	m
+DF32IDLE	df32.h	4;"	d
+DF32READ	df32.h	5;"	d
+DF32SIZE	df32.h	1;"	d
+DF32WRITE	df32.h	6;"	d
+DF32XFER	df32.h	2;"	d
+LIBS	Makefile	/^LIBS = -lncurses $/;"	m
+LINELEN	pal.c	318;"	d	file:
+NAMELEN	pal.c	59;"	d	file:
+OBJS	Makefile	/^OBJS = df32.o tty.o cpu.o rim.o preload.o pdp8.o$/;"	m
+PCS	df32.h	8;"	d
+STD	Makefile	/^STD = _GNU_SOURCE$/;"	m
+SYMBOLS	pal.c	167;"	d	file:
+SYMLEN	pal.c	168;"	d	file:
+TTY_PUN_TIME	tty.h	1;"	d
+ac	pdp8.h	/^int pc,ma,mb,ac,l,mq,sr;	\/\/ define registers$/;"	v
+addr	depal.c	/^int ch,addr,opcode,state,nstate=0;$/;"	v
+address	depal.c	/^void address(int val)$/;"	f
+c2upper	pal.c	/^int c2upper(c)$/;"	f
+ch	depal.c	/^int ch,addr,opcode,state,nstate=0;$/;"	v
+cksum	pal.c	/^int cksum = 0;		\/* checksum generated for .bin files *\/$/;"	v
+condfalse	pal.c	/^condfalse()$/;"	f
+condtrue	pal.c	/^condtrue()$/;"	f
+core	pdp8.h	/^int core[CORESIZE];$/;"	v
+cp	pal.c	/^int cp[0200]; \/* storehouse for current page constants *\/$/;"	v
+cplc	pal.c	/^int cplc; \/* the current page location counter for current page constants *\/$/;"	v
+cycles	pdp8.h	/^int cycles,halt;		\/\/ Cycle counter (needed for timing) and halt\/run flag$/;"	v
+define	pal.c	/^define( sym, val )$/;"	f
+deflex	pal.c	/^deflex( start, term, val )$/;"	f
+delimiter	pal.c	/^int delimiter; \/* the character immediately after this eval'd term *\/$/;"	v
+df32	df32.c	/^int df32[DF32SIZE];$/;"	v
+df32	df32.h	/^int df32[DF32SIZE];$/;"	v
+df32_action	df32.h	/^int df32_action;		\/\/ what is the DF32 actually doing?$/;"	v
+df32_ca	df32.h	/^int df32_wc,df32_ca;		\/\/ disk word count and address registers$/;"	v
+df32_dmar	df32.h	/^int df32_dmar,df32_ema;		\/\/ registers$/;"	v
+df32_ema	df32.h	/^int df32_dmar,df32_ema;		\/\/ registers$/;"	v
+df32_f	df32.h	/^int df32_pe_f,df32_f;		\/\/ flags$/;"	v
+df32_init	df32.c	/^void df32_init()		\/\/ load a file into the DF32 buffer$/;"	f
+df32_int_f	df32.h	/^int df32_int_f;			\/\/ interrupt flags$/;"	v
+df32_iot0	df32.c	/^void df32_iot0(int command)	\/\/ Handle the IOT for the DF32, device 60 $/;"	f
+df32_iot1	df32.c	/^void df32_iot1(int command)$/;"	f
+df32_iot2	df32.c	/^void df32_iot2(int command)$/;"	f
+df32_pe_f	df32.h	/^int df32_pe_f,df32_f;		\/\/ flags$/;"	v
+df32_run	df32.c	/^void df32_run()			\/\/ called every CPU cycle$/;"	f
+df32_wc	df32.h	/^int df32_wc,df32_ca;		\/\/ disk word count and address registers$/;"	v
+dfr	pdp8.h	/^int dfr,ifr,ifrb,i_dfr,i_ifr;	\/\/ memory field registers$/;"	v
+dump	pal.c	/^dump()$/;"	f
+dumpflag	pal.c	/^int dumpflag = 0;	\/* dump symtab if 1 (defaults to no dump) *\/$/;"	v
+error	pal.c	/^error( msg )$/;"	f
+errors	pal.c	/^int errors = 0;		\/* number of errors found so far *\/$/;"	v
+eval	pal.c	/^int eval()$/;"	f
+evalsym	pal.c	/^int evalsym()$/;"	f
+field	pal.c	/^int field; \/* the current field *\/$/;"	v
+filename	pal.c	/^char *filename = NULL;	\/* input file's name *\/$/;"	v
+firstsym	pal.c	258;"	d	file:
+functionmesh	cpu.c	/^int functionmesh(int opcode)$/;"	f
+getaddr	cpu.c	/^int getaddr(int addr)$/;"	f
+getargs	pal.c	/^getargs(argc, argv)$/;"	f
+getexpr	pal.c	/^int getexpr()$/;"	f
+getexprs	pal.c	/^int getexprs()$/;"	f
+halt	pdp8.h	/^int cycles,halt;		\/\/ Cycle counter (needed for timing) and halt\/run flag$/;"	v
+i_dfr	pdp8.h	/^int dfr,ifr,ifrb,i_dfr,i_ifr;	\/\/ memory field registers$/;"	v
+i_ifr	pdp8.h	/^int dfr,ifr,ifrb,i_dfr,i_ifr;	\/\/ memory field registers$/;"	v
+ifr	pdp8.h	/^int dfr,ifr,ifrb,i_dfr,i_ifr;	\/\/ memory field registers$/;"	v
+ifrb	pdp8.h	/^int dfr,ifr,ifrb,i_dfr,i_ifr;	\/\/ memory field registers$/;"	v
+in	pal.c	/^FILE *in;		\/* input file *\/$/;"	v
+iot_decode	depal.c	/^void iot_decode(int val)$/;"	f
+isblank	pal.c	439;"	d	file:
+isdone	pal.c	56;"	d	file:
+isend	pal.c	55;"	d	file:
+l	pdp8.h	/^int pc,ma,mb,ac,l,mq,sr;	\/\/ define registers$/;"	v
+lc	pal.c	/^int lc; \/* the location counter *\/$/;"	v
+lexstart	pal.c	/^char lexstart; \/* index of start of the current lexeme on line *\/$/;"	v
+lexterm	pal.c	/^char lexterm;  \/* index of character after the current lexeme on line *\/$/;"	v
+line	pal.c	/^char line[LINELEN];$/;"	v
+lineno	pal.c	/^int lineno; \/* line number of current line *\/$/;"	v
+listed	pal.c	/^int listed; \/* has line been listed to listing yet (0 = no, 1 = yes) *\/$/;"	v
+listline	pal.c	/^listline()$/;"	f
+lookup	pal.c	/^short int lookup( sym )$/;"	f
+lst	pal.c	/^FILE *lst = NULL;	\/* listing file *\/$/;"	v
+lstname	pal.c	/^char lstname[NAMELEN];	\/* listing file's name *\/$/;"	v
+lstsave	pal.c	/^FILE *lstsave = NULL;	\/* alternate listing file *\/$/;"	v
+ma	pdp8.h	/^int pc,ma,mb,ac,l,mq,sr;	\/\/ define registers$/;"	v
+main	depal.c	/^int main(int argc,char *argv[])$/;"	f
+main	pal.c	/^main(argc, argv)$/;"	f
+main	pdp8.c	/^int main() $/;"	f
+mb	pdp8.h	/^int pc,ma,mb,ac,l,mq,sr;	\/\/ define registers$/;"	v
+mq	pdp8.h	/^int pc,ma,mb,ac,l,mq,sr;	\/\/ define registers$/;"	v
+nextlex	pal.c	/^nextlex()$/;"	f
+nextlexblank	pal.c	/^nextlexblank()$/;"	f
+nstate	depal.c	/^int ch,addr,opcode,state,nstate=0;$/;"	v
+obj	pal.c	/^FILE *obj = NULL;	\/* object file *\/$/;"	v
+objname	pal.c	/^char objname[NAMELEN];	\/* object file's name *\/$/;"	v
+objsave	pal.c	/^FILE *objsave = NULL;	\/* alternate object file (supports ENPUNCH\/NOPUNCH) *\/$/;"	v
+omi_decode	depal.c	/^void omi_decode(int val)$/;"	f
+onepass	pal.c	/^onepass()$/;"	f
+opcode	depal.c	/^int ch,addr,opcode,state,nstate=0;$/;"	v
+pc	pdp8.h	/^int pc,ma,mb,ac,l,mq,sr;	\/\/ define registers$/;"	v
+pos	pal.c	/^int pos;    \/* position on line *\/$/;"	v
+preload	preload.c	/^void preload()$/;"	f
+putcp	pal.c	/^putcp()$/;"	f
+putleader	pal.c	/^putleader()$/;"	f
+puto	pal.c	/^puto(c)$/;"	f
+putorg	pal.c	/^putorg( loc )$/;"	f
+putout	pal.c	/^putout( loc, val )$/;"	f
+putpz	pal.c	/^putpz()$/;"	f
+pz	pal.c	/^int pz[0200]; \/* storehouse for page zero constants *\/$/;"	v
+pzlc	pal.c	/^int pzlc; \/* the page zero location counter for page zero constants *\/$/;"	v
+radix	pal.c	/^int radix; \/* the default number radix *\/$/;"	v
+ral	cpu.c	/^void ral()$/;"	f
+rar	cpu.c	/^void rar()$/;"	f
+readline	pal.c	/^readline()$/;"	f
+reloc	pal.c	/^int reloc; \/* the relocation distance (see RELOC) *\/$/;"	v
+rim	rim.c	/^void rim()$/;"	f
+rimflag	pal.c	/^int rimflag = 0;	\/* generate rim format if 1 (defaults bin) *\/$/;"	v
+sr	pdp8.h	/^int pc,ma,mb,ac,l,mq,sr;	\/\/ define registers$/;"	v
+state	depal.c	/^int ch,addr,opcode,state,nstate=0;$/;"	v
+sym	pal.c	/^	char sym[SYMLEN]; \/* the textual name of the symbol, zero filled *\/$/;"	m	struct:symbol	file:
+symbol	pal.c	/^struct symbol {$/;"	s	file:
+symtab	pal.c	/^} symtab[SYMBOLS] = {  \/* values = 01xxxx indicate MRI *\/$/;"	v
+tty_col	tty.h	/^int tty_col;$/;"	v
+tty_pun	tty.c	/^void tty_pun(int command)$/;"	f
+tty_pun_buf	tty.h	/^int tty_rdr_buf,tty_pun_buf;		\/\/ TTY buffers$/;"	v
+tty_pun_clk	tty.h	/^int tty_pun_clk;		\/\/ Contains the next cycle when the flag will be cleared$/;"	v
+tty_pun_f	tty.h	/^int tty_pun_f, tty_rdr_f;	\/\/ TTY flags$/;"	v
+tty_rdr	tty.c	/^void tty_rdr(int command)$/;"	f
+tty_rdr_buf	tty.h	/^int tty_rdr_buf,tty_pun_buf;		\/\/ TTY buffers$/;"	v
+tty_rdr_f	tty.h	/^int tty_pun_f, tty_rdr_f;	\/\/ TTY flags$/;"	v
+tty_run	tty.c	/^void tty_run()$/;"	f
+val	pal.c	/^	short int val;	  \/* the value associated with the symbol *\/$/;"	m	struct:symbol	file:
