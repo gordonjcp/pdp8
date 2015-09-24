@@ -14,8 +14,7 @@ int df32_int_f;			// interrupt flags
 int df32_action;		// what is the DF32 actually doing?
 
 // function prototypes
-void df32_iot0();
-void df32_iot1();
-void df32_iot2();
-void df32_init();
-void df32_run();
+void df32_iot0(int command);
+void df32_iot2(int command);
+void df32_init(void);
+void df32_run(void);

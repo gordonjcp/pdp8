@@ -1,20 +1,19 @@
 // DF32 unit
 
+#include <stdio.h>
+#include <ncurses.h>
 #include "pdp8.h"
 #include "df32.h"
-#include <stdio.h>
-
-int df32[DF32SIZE];
 
 void df32_init()		// load a file into the DF32 buffer
 {
-  int i,ch,val;
-  FILE *fopen(), *fptr;
+  int i,ch,val = 0;
+  FILE *fptr;
 
   if ((fptr=fopen("dms.df32","r")) == NULL) {
     printf("It's broken\n");
   }
-  
+
   for (i=0; (ch=getc(fptr)) != EOF;i++) {
     if ((i & 1)== 0) {
       val=ch;
@@ -22,7 +21,7 @@ void df32_init()		// load a file into the DF32 buffer
       val += ch<<8;
   //    printf("%06o %04o\n",i>>1,val);
       df32[i>>1]=val;
-      
+
     }
   }
   fclose (fptr);
@@ -34,7 +33,7 @@ void df32_init()		// load a file into the DF32 buffer
   df32_ema=0;
 }
 
-void df32_iot0(int command)	// Handle the IOT for the DF32, device 60 
+void df32_iot0(int command)	// Handle the IOT for the DF32, device 60
 {
   if (command & 1) {		// DCMA bit
     df32_dmar=0;		// Clear DMAR
@@ -60,10 +59,6 @@ void df32_iot0(int command)	// Handle the IOT for the DF32, device 60
   }
 }
 
-void df32_iot1(int command)
-{
-}
-
 void df32_iot2(int command)
 {
   if (command & 1) pc++;
@@ -77,20 +72,20 @@ void df32_run()			// called every CPU cycle
   if (df32_action != DF32IDLE) {
   for (i=0; i<DF32XFER; i++) {
     if (df32_action==DF32READ) {
-      printf("reading..."); 
+      printf("reading...");
       core[df32_ca]=df32[(4096*(df32_ema>>1))+df32_dmar];
-    }  
+    }
 //    if (df32_action==DF32WRITE) df32[(4096*(df32_ema>>1))+df32_dmar]=core[df32_ca];
-    
+
   //printw("%04o %04o %06o %04o\n",df32_wc,df32_ca,df32_dmar,df32[(4096*(df32_ema>>1))+df32_dmar]);
     df32_ca++; df32_dmar++; df32_wc++;
     if (df32_wc==010000) {
       printw("%o ",df32_action);
-      
+
       i=DF32XFER;
       df32_f=1;
       df32_action=DF32IDLE;
-    }  
+    }
   }
   }
-}  
+}

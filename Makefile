@@ -1,5 +1,9 @@
-LIBS = -lncurses 
-CFLAGS = -c -g -Wall
+LIBS = -lncurses
+#CFLAGS = -c -g -Wall
+CFLAGS = -W -Wall -Wundef
+CFLAGS += -std=gnu99 -pedantic
+CFLAGS += -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -O2
+
 CC = gcc
 STD = _GNU_SOURCE
 OBJS = df32.o tty.o cpu.o rim.o preload.o pdp8.o
@@ -14,11 +18,10 @@ depal:  $(DEPAL_OBJS)
 pal:
 	$(CC) pal.c -o pal
 
-pdp8: $(OBJS) 
+pdp8: $(OBJS)
 	$(CC) $(OBJS) -o pdp8 $(LIBS)
 
-clean: 
+clean:
 	rm -f *.o core
 clobber: clean
 	rm pdp8 pal depal
-

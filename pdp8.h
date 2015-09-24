@@ -7,5 +7,5 @@ int cycles,halt;		// Cycle counter (needed for timing) and halt/run flag
 int dfr,ifr,ifrb,i_dfr,i_ifr;	// memory field registers
 
 // Some function prototypes
-void preload();			// preload code into core
-void rim();			// get a file in BIN format (misnomer really)
+void preload(void);			// preload code into core
+void rim(void);			// get a file in BIN format (misnomer really)

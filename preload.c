@@ -12,7 +12,7 @@ void preload()
   core[00204]=07600;
   core[07750]=07576;
   core[07751]=07576;
-  
+
   core[05000]=07300;	// cla cll
   core[05001]=01170;	// tad buff
   core[05002]=03171;	// dca buffpt
@@ -31,7 +31,7 @@ void preload()
   core[05017]=05217;	// jmp .
   core[05170]=02000;	// BUFF
   core[05172]=07534;
-  
+
   core[04000]=07300;
   core[04001]=06046;
   core[04002]=01300;
@@ -66,4 +66,3 @@ void preload()
   core[01003]=05302;
   core[011002]=00400;
 }
-

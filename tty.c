@@ -12,7 +12,7 @@ void tty_pun(int command)
   if (command & 4) {			// TPC - tell the punch to print
     tty_pun_buf=ac;			// there's actually some cooking to go on here
     tty_pun_clk=cycles+TTY_PUN_TIME;
-  }  
+  }
 }
 
 void tty_rdr(int command)
@@ -25,10 +25,10 @@ void tty_rdr(int command)
   if (command & 4) { 			// KRB - read the reader buffer
     if (tty_rdr_buf == 00012) {
       tty_rdr_buf=00015;			// <RETURN> becomes CR
-    }  
+    }
     if (tty_rdr_buf == 00527) {
       tty_rdr_buf=00012;			// <KP_ENTER> becomes LF
-    }  
+    }
     ac=tty_rdr_buf | 00200; }		// always has MSB set
 }
 
@@ -44,6 +44,6 @@ void tty_run()
       default:
         mvwprintw(stdscr,21,tty_col,"%c",tty_pun_buf & 00177);	// MSB needs masked off
 	tty_col++;
-    }	
+    }
   }
-}  
+}

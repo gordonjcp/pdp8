@@ -5,18 +5,17 @@
 #include "pdp8.h"
 #include "tty.h"
 #include "cpu.h"
-#include "df32.h" 
-int main() 
+#include "df32.h"
+int main(void)
 {
   int ch;
   WINDOW *reg_win;
-  char *runhalt[]={"Running","Halted ","Trap   "};
+  const char *runhalt[]={"Running","Halted ","Trap   "};
 
   preload();
   rim();
 
   df32_init();
-  
 
   // get ncurses going
   initscr();
@@ -25,7 +24,7 @@ int main()
   keypad(stdscr,TRUE);		// lets us use function keys etc
   scrollok(stdscr,TRUE);
   reg_win=newwin(1,79,23,0);	// define a register window
-  
+
   nodelay(stdscr, TRUE);	// nonblocking tty IO
 
   // set up the registers and stuff
@@ -45,11 +44,11 @@ int main()
   wrefresh(reg_win);
 
   // main loop begins
-  while(ch!=KEY_F(11)) { 	// if the key pressed was F11, we'll leave 
+  while(ch!=KEY_F(12)) { 	// if the key pressed was F11, we'll leave
     ch = getch();		// get a keystroke
     if (ch!=ERR) {		// there actually *is* a keystroke
       switch (ch) {
-        case KEY_F(2):		// F2 is single-step 
+        case KEY_F(2):		// F2 is single-step
 	  functionmesh(core[pc+(010000*ifr)]);	// do the instruction
   	  break;
         case KEY_F(3):		// F3 is halt/run
@@ -75,17 +74,16 @@ int main()
     }
 
     cycles++;			// increase the cycle counter
-    
+
     if(!halt) {			// CPU is running, let's do the instruction
       functionmesh(core[pc+(01000*ifr)]);
     }				// we can always add more here later
-    
+
     tty_run();			// handle the TTY
     df32_run();
     // more peripheral handlers will go here
-  } 
-  
-  endwin();			// leave ncurses mode
-  return (0); 
-}
+  }
 
+  endwin();			// leave ncurses mode
+  return (0);
+}

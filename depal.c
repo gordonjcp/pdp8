@@ -3,7 +3,7 @@
 
 int ch,addr,opcode,state,nstate=0;
 
-void address(int val)
+static void address(int val)
 {
   int offset;
   offset=val & 0177;
@@ -12,7 +12,7 @@ void address(int val)
   printf("%04o ",offset);
 }
 
-void iot_decode(int val)
+static void iot_decode(int val)
 {
   switch(val) {
     case 06031: printf("KSF"); break;
@@ -30,7 +30,7 @@ void iot_decode(int val)
   }
 }
 
-void omi_decode(int val)
+static void omi_decode(int val)
 {
   int decoded=0;		// needed, in case we never find an opcode
   if (val & 00400) {	// group 2 OMIs
@@ -59,7 +59,7 @@ void omi_decode(int val)
     if (val & 00010 && !(val & 00002) ) { printf("RAR "); decoded=1; }
     if (val & 00010 && val & 00002) { printf("RTR "); decoded=1; }
     if (val & 00004 && !(val & 00002) ) { printf("RAL "); decoded=1; }
-    if (val & 00004 && val & 00002) { printf("RTL "); decoded=1; } 
+    if (val & 00004 && val & 00002) { printf("RTL "); decoded=1; }
   }
   if(!decoded) printf("%04o",val);
 }
@@ -67,20 +67,20 @@ void omi_decode(int val)
 int main(int argc,char *argv[])
 {
   int val;
-  FILE *fopen(), *fptr;
+  FILE *fptr;
 
   // get the arguments
   if (argc<2) {	// no argument given
     printf("%s: no input file\n",argv[0]);
     exit(1);
   }
-  
+
   // open the input file
   if ((fptr=fopen(argv[1],"r")) == NULL) { // can't open the file
     printf("%s: couldn't open %s for reading\n",argv[0],argv[1]);
     exit(1);
   }
-  state=0;	// before anything  
+  state=0;	// before anything
   addr=0;
   val=0;
   while (((ch=getc(fptr)) != EOF) & (state!=6)) {
@@ -90,14 +90,14 @@ int main(int argc,char *argv[])
       addr=(ch & 0077) << 6;
       nstate=3;
       state=1;
-      
+
       }
     if (state==3) {			// load addr, lower half
       addr += (ch & 0077);
       printf("*%04o\n",addr);
       nstate=4;
       }
-    if ((state==4)&&(ch==0200)) state=6; 
+    if ((state==4)&&(ch==0200)) state=6;
     if (state==4) {
       val=ch << 6;
       nstate=5;
@@ -121,10 +121,10 @@ int main(int argc,char *argv[])
       }
       addr++;
       printf("\n");
-    } 
+    }
     state=nstate;
   }
   printf("$\n");
   fclose(fptr);
   return(0);
-}  
+}

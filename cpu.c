@@ -10,7 +10,7 @@
 int getaddr(int addr)
 {
   int offset;
-  
+
   offset = addr & 00177;	// size of a page
   // is the address on the current page?
   if (addr & 00200) offset = offset + (pc & 07600);
@@ -18,13 +18,13 @@ int getaddr(int addr)
   if (addr & 00400) offset = core[offset];
   return (offset);
 }
-void rar()
+static void rar(void)
 {
   ac += (l*010000);	// l gets ready to be rotated to bit 0 (now it's at bit -1!)
   l=ac & 00001;		// l now takes the bit that's about to fall off the end
   ac=ac>>1;		// bump one place right;
 }
-void ral()
+static void ral(void)
 {
   int temp;
   temp=l;
@@ -36,7 +36,7 @@ void ral()
 int functionmesh(int opcode)
 {
   int func,addr;
-  
+
   func = (opcode & 07000) >> 9;	// get the actual function
   addr = getaddr(opcode)+dfr*010000;	// get the address we're working on
   switch(func) {
@@ -44,7 +44,7 @@ int functionmesh(int opcode)
       ac = ac & core[addr];
       pc++;
       break;
-    }  
+    }
     case 1: {			// TAD (two's complement add AC and core)
       int temp;
       temp = ac + core[addr];
@@ -66,7 +66,7 @@ int functionmesh(int opcode)
       ac=0;
       pc++;
       break;
-    }  
+    }
     case 4: {			// JMS (jump to subroutine)
       core[addr] = ++pc;	// return address is bumped by one
       ifr=ifrb;			// Instruction Field
@@ -80,7 +80,7 @@ int functionmesh(int opcode)
     }
     case 6: {			// IOTs
       int device = (opcode & 00770) >> 3;	// get the device code
-      
+
       int command = opcode & 00007;	// get the command for the device
       switch (device) {
         case 000: break;		// Interrupts
@@ -88,9 +88,9 @@ int functionmesh(int opcode)
 	case 002: break;		// High speed punch
 	case 003: tty_rdr(command); break;		// Teletype keyboard
 	case 004: tty_pun(command); break;		// Teletype punch
-	case 060: df32_iot0(command); break;		// Disk DF32 
-	case 061: break;		// Disk DF32 
-	case 062: df32_iot2(command); break;		// Disk DF32 
+	case 060: df32_iot0(command); break;		// Disk DF32
+	case 061: break;		// Disk DF32
+	case 062: df32_iot2(command); break;		// Disk DF32
 	case 075: break;		// Disk RX01
 	default:
 	  if ((opcode & 07700) == 06200){	// extended memory
@@ -102,8 +102,8 @@ int functionmesh(int opcode)
 	      if (field == 2) { ac=ac & 07707; ac=ac | (ifr << 3); }
 	      if (field == 3) { ac=ac & 0770; ac=ac | (ifr << 3) | dfr; }
 	      if (field == 4) { ifrb=i_ifr; dfr=i_dfr; }
-	    }  
-	  }  
+	    }
+	  }
       }
       pc++;
       break;
@@ -135,8 +135,7 @@ int functionmesh(int opcode)
       }
       pc++;
       break;
-    }  
+    }
   }
   return addr;
 }
-
