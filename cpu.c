@@ -18,7 +18,7 @@ int getaddr(int addr)
   if (addr & 00400) offset = core[offset];
 
   // is it an auto-incrementing register?
-  if (addr & 00400 && offset =< 00017 && offset >= 00010) core[offset]++;
+  if (addr & 00400 && offset <= 00017 && offset >= 00010) core[offset]++;
   return (offset);
 }
 
