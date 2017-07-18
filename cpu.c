@@ -48,7 +48,7 @@ int functionmesh(int opcode)
     case 1: {			// TAD (two's complement add AC and core)
       int temp;
       temp = ac + core[addr];
-      if (temp & 0170000) l=1;	// it's overflowed
+      if (temp & 0170000) l=!l;	// it's overflowed
       ac = temp & 0007777;	// make sure it's never more than 12 bits
       pc++;
       break;
