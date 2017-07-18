@@ -16,8 +16,12 @@ int getaddr(int addr)
   if (addr & 00200) offset = offset + (pc & 07600);
   // is it indirect?
   if (addr & 00400) offset = core[offset];
+
+  // is it an auto-incrementing register?
+  if (addr & 00400 && offset =< 00017 && offset >= 00010) core[offset]++;
   return (offset);
 }
+
 static void rar(void)
 {
   ac += (l*010000);	// l gets ready to be rotated to bit 0 (now it's at bit -1!)
