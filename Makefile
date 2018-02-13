@@ -23,5 +23,4 @@ pdp8: $(OBJS)
 
 clean:
 	rm -f *.o core
-clobber: clean
 	rm pdp8 pal depal

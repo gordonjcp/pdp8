@@ -79,8 +79,8 @@ int c;
 }
 
 /* command line argument processing */
-getargs(argc, argv)
-int argc;
+void getargs(argc, argv)
+	int argc;
 char *argv[];
 {
 	int i,j;
@@ -259,7 +259,7 @@ struct symbol {
 #define firstsym 75
 
 /* dump symbol table */
-dump()
+void dump()
 {
 	int i;
 	fprintf( lst, "\n" );
@@ -270,7 +270,7 @@ dump()
 }
 
 /* define symbol */
-define( sym, val )
+void define( sym, val )
 char sym[SYMLEN];
 short int val;
 {
@@ -323,7 +323,7 @@ int listed; /* has line been listed to listing yet (0 = no, 1 = yes) */
 int lineno; /* line number of current line */
 
 
-listline()
+void listline()
 /* generate a line of listing if not already done! */
 {
 	if ((lst != NULL) && (listed == 0)) {
@@ -333,7 +333,7 @@ listline()
 	listed = 1;
 }
 
-error( msg )
+void error( msg )
 char *msg;
 /* generate a line of listing with embedded error messages */
 {
@@ -363,7 +363,7 @@ char *msg;
 	errors++;
 }
 
-readline()
+void readline()
 /* read one input line, setting things up for lexical analysis */
 {
 	listline(); /* if it hasn't been listed yet, list it! */
@@ -378,7 +378,7 @@ readline()
 	}
 }
 
-putleader()
+void putleader()
 /* generate 2 feet of leader on the object file, as per DEC documentation */
 {
 	if (obj != NULL) {
@@ -389,7 +389,7 @@ putleader()
 	}
 }
 
-puto(c)
+void puto(c)
 int c;
 /* put one character to obj file and include it in checksum */
 {
@@ -400,14 +400,14 @@ int c;
 
 int field; /* the current field */
 
-putorg( loc )
+void putorg( loc )
 short int loc;
 {
 	puto( ((loc >> 6) & 0077) | 0100 );
 	puto( loc & 0077 );
 }
 
-putout( loc, val )
+void putout( loc, val )
 short int loc;
 short int val;
 /* put out a word of object code */
@@ -440,7 +440,7 @@ char lexterm;  /* index of character after the current lexeme on line */
 #undef isblank
 #define isblank(c) ((c==' ')||(c=='\t')||(c=='\f')||(c=='>'))
 
-nextlex()
+void nextlex()
 /* get the next lexeme into lex */
 {
 	while (isblank(line[pos])) {
@@ -471,7 +471,7 @@ nextlex()
 	lexterm = pos;
 }
 
-deflex( start, term, val )
+void deflex( start, term, val )
 int start; /* start of lexeme to be defined */
 int term; /* character after end of lexeme to be defined */
 int val; /* value of lexeme to be defined */
@@ -492,7 +492,7 @@ int val; /* value of lexeme to be defined */
 }
 
 
-condtrue()
+void condtrue()
 /* called when a true conditional has been evaluated */
 /* lex should be the opening <; skip it and setup for normal assembly */
 {
@@ -503,7 +503,7 @@ condtrue()
 	}
 }
 
-condfalse()
+void condfalse()
 /* called when a false conditional has been evaluated */
 /* lex should be the opening <; ignore all text until the closing > */
 {
@@ -541,7 +541,7 @@ int radix; /* the default number radix */
 int pz[0200]; /* storehouse for page zero constants */
 int cp[0200]; /* storehouse for current page constants */
 
-putpz()
+void putpz()
 /* put out page zero data */
 {
 	int loc;
@@ -558,7 +558,7 @@ putpz()
 	pzlc = 00177;
 }
 
-putcp()
+void putcp()
 /* put out current page data */
 {
 	int loc;
@@ -601,7 +601,7 @@ int evalsym()
 }
 
 int delimiter; /* the character immediately after this eval'd term */
-nextlexblank()
+void nextlexblank()
 /* used only within eval, getexpr, this prevents illegal blanks */
 {
 	nextlex();
@@ -855,7 +855,7 @@ more:	/* here, we check if we are done */
 	}
 }
 
-onepass()
+void onepass()
 /* do one assembly pass */
 {
 	lc = 0;
@@ -1167,7 +1167,7 @@ restart:
 
 
 /* main program */
-main(argc, argv)
+int main(argc, argv)
 int argc;
 char *argv[];
 {
