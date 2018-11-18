@@ -16,8 +16,12 @@ int getaddr(int addr)
   if (addr & 00200) offset = offset + (pc & 07600);
   // is it indirect?
   if (addr & 00400) offset = core[offset];
+
+  // is it an auto-incrementing register?
+  if (addr & 00400 && offset <= 00017 && offset >= 00010) core[offset]++;
   return (offset);
 }
+
 static void rar(void)
 {
   ac += (l*010000);	// l gets ready to be rotated to bit 0 (now it's at bit -1!)
@@ -48,7 +52,7 @@ int functionmesh(int opcode)
     case 1: {			// TAD (two's complement add AC and core)
       int temp;
       temp = ac + core[addr];
-      if (temp & 0170000) l=1;	// it's overflowed
+      if (temp & 0170000) l=!l;	// it's overflowed
       ac = temp & 0007777;	// make sure it's never more than 12 bits
       pc++;
       break;
