@@ -6,9 +6,16 @@
 #include "tty.h"
 #include "cpu.h"
 #include "df32.h"
+
+int core[CORESIZE];
+int pc,ma,mb,ac,l,mq,sr;	// define registers
+int cycles,halt;		// Cycle counter (needed for timing) and halt/run flag
+int dfr,ifr,ifrb,i_dfr,i_ifr;	// memory field registers
+
+
 int main(void)
 {
-  int ch;
+  int ch = 0;
   WINDOW *reg_win;
   const char *runhalt[]={"Running","Halted ","Trap   "};
 

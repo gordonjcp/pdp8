@@ -5,6 +5,14 @@
 #include "pdp8.h"
 #include "df32.h"
 
+int df32[DF32SIZE];
+int df32_wc,df32_ca;		// disk word count and address registers
+int df32_dmar,df32_ema;		// registers
+int df32_pe_f,df32_f;		// flags
+int df32_int_f;			// interrupt flags
+int df32_action;		// what is the DF32 actually doing?
+
+
 void df32_init()		// load a file into the DF32 buffer
 {
   int i,ch,val = 0;
