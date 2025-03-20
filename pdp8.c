@@ -67,6 +67,7 @@ int main(void)
 	  break;
 	case KEY_F(9):
 	  pc=07000;
+    sr=07000;
 	  halt=0;
 	  break;
 	default:
